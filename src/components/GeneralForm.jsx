@@ -1,6 +1,7 @@
 const GeneralForm = (props) => {
   return (
     <>
+      <h2>General</h2>
       <form>
         <label htmlFor="name">
           name:
@@ -12,6 +13,7 @@ const GeneralForm = (props) => {
             id="name"
           />
         </label>
+        <br />
         <label htmlFor="email">
           email:
           <input
@@ -22,6 +24,7 @@ const GeneralForm = (props) => {
             id="email"
           />
         </label>
+        <br />
         <label htmlFor="phone">
           phone:
           <input
@@ -32,6 +35,7 @@ const GeneralForm = (props) => {
             id="phone"
           />
         </label>
+        <br />
       </form>
     </>
   );

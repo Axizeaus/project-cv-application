@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import GeneralForm from "./components/GeneralForm";
+import EducationForm from "./components/EducationForm";
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState({
@@ -19,12 +20,9 @@ function App() {
   const [exp, setExp] = useState({
     companyName: "",
     positionTitle: "",
-    startDate: new Date(),
-    endDate: new Date(),
+    // startDate: new Date(),
+    // endDate: new Date(),
   });
-
-  console.log(personalInfo);
-
   const handleEdit = (e) => {
     const { name, value } = e.target;
     setPersonalInfo((prevInfo) => {
@@ -33,6 +31,11 @@ function App() {
         [name]: value,
       };
     });
+  };
+
+  const handleEduInfoSubmit = (e) => {
+    e.preventDefault();
+    console.log(e.target[2].valueAsDate);
   };
 
   const handlePersonInfoChange = (e) => {
@@ -46,8 +49,14 @@ function App() {
   };
 
   const handleEduInfoChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, valueAsDate } = e.target;
     setEduInfo((prevInfo) => {
+      if (type === "date") {
+        return {
+          ...prevInfo,
+          [name]: valueAsDate,
+        };
+      }
       return {
         ...prevInfo,
         [name]: value,
@@ -61,7 +70,11 @@ function App() {
         personalInfo={personalInfo}
         handleChange={handlePersonInfoChange}
       />
-      <EducationForm eduInfo={eduInfo} handleChange={handleEduInfoChange} />
+      <EducationForm
+        eduInfo={eduInfo}
+        handleChange={handleEduInfoChange}
+        handleSubmit={handleEduInfoSubmit}
+      />
     </>
   );
 }
