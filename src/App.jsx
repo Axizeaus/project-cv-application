@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import GeneralForm from "./components/GeneralForm";
 import EducationForm from "./components/EducationForm";
+import ExpForm from "./components/ExpForm";
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState({
@@ -17,11 +18,11 @@ function App() {
     endDate: new Date(),
   });
 
-  const [exp, setExp] = useState({
+  const [expInfo, setExpInfo] = useState({
     companyName: "",
     positionTitle: "",
-    // startDate: new Date(),
-    // endDate: new Date(),
+    startDate: new Date(),
+    endDate: new Date(),
   });
   const handleEdit = (e) => {
     const { name, value } = e.target;
@@ -64,6 +65,23 @@ function App() {
     });
   };
 
+  const handleExpInfoChange = (e) => {
+    const { name, value, type, valueAsDate } = e.target;
+    setExpInfo((prevInfo) => {
+      if (type === "date") {
+        return {
+          ...prevInfo,
+          [name]: valueAsDate,
+        };
+      }
+      return {
+        ...prevInfo,
+        [name]: value,
+      };
+    });
+  };
+
+  console.log(expInfo);
   return (
     <>
       <GeneralForm
@@ -75,6 +93,7 @@ function App() {
         handleChange={handleEduInfoChange}
         handleSubmit={handleEduInfoSubmit}
       />
+      <ExpForm expInfo={expInfo} handleChange={handleExpInfoChange} />
     </>
   );
 }
