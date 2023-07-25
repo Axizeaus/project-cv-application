@@ -1,19 +1,31 @@
 import { useState } from "react";
 import "./App.css";
-import GeneralInfo from "./components/General";
-
-const dummyData = {
-  name: "Joe Schmoe",
-  email: "joe@schomoe.com",
-  phone: "0123 888 654 3214",
-};
+import GeneralForm from "./components/GeneralForm";
 
 function App() {
-  const [personalInfo, setPersonalInfo] = useState(dummyData);
+  const [personalInfo, setPersonalInfo] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
+
+  const [eduInfo, setEduInfo] = useState({
+    schoolName: "",
+    studyTitle: "",
+    startDate: new Date(),
+    endDate: new Date(),
+  });
+
+  const [exp, setExp] = useState({
+    companyName: "",
+    positionTitle: "",
+    startDate: new Date(),
+    endDate: new Date(),
+  });
 
   console.log(personalInfo);
 
-  const handleChange = (e) => {
+  const handleEdit = (e) => {
     const { name, value } = e.target;
     setPersonalInfo((prevInfo) => {
       return {
@@ -23,9 +35,33 @@ function App() {
     });
   };
 
+  const handlePersonInfoChange = (e) => {
+    const { name, value } = e.target;
+    setPersonalInfo((prevInfo) => {
+      return {
+        ...prevInfo,
+        [name]: value,
+      };
+    });
+  };
+
+  const handleEduInfoChange = (e) => {
+    const { name, value } = e.target;
+    setEduInfo((prevInfo) => {
+      return {
+        ...prevInfo,
+        [name]: value,
+      };
+    });
+  };
+
   return (
     <>
-      <GeneralInfo info={personalInfo} handleChange={handleChange} />
+      <GeneralForm
+        personalInfo={personalInfo}
+        handleChange={handlePersonInfoChange}
+      />
+      <EducationForm eduInfo={eduInfo} handleChange={handleEduInfoChange} />
     </>
   );
 }
