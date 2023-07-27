@@ -3,12 +3,21 @@ import "./App.css";
 import PersonalForm from "./components/PersonalForm";
 import EducationForm from "./components/EducationForm";
 import ExpForm from "./components/ExpForm";
+import DisplayPersonalInfo from "./components/DisplayPersonal";
+import DisplayEduInfo from "./components/DisplayEdu";
+import DisplayExpInfo from "./components/DisplayExp";
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState({
     name: "",
     email: "",
     phone: "",
+  });
+
+  const [display, setDisplay] = useState({
+    displayPersonal: false,
+    displayEdu: false,
+    displayExp: false,
   });
 
   const [eduInfo, setEduInfo] = useState({
@@ -69,25 +78,43 @@ function App() {
 
   const handlePersonalInfoSubmit = (e) => {
     e.preventDefault();
+    setDisplay((prevDisplay) => {
+      return {
+        ...prevDisplay,
+        displayPersonal: !prevDisplay.displayPersonal,
+      };
+    });
   };
 
   const handleEduInfoSubmit = (e) => {
     e.preventDefault();
+    setDisplay((prevDisplay) => {
+      return {
+        ...prevDisplay,
+        displayEdu: !prevDisplay.displayEdu,
+      };
+    });
   };
 
   const handleExpInfoSubmit = (e) => {
     e.preventDefault();
-  };
-
-  const handleEdit = (e) => {
-    const { name, value } = e.target;
-    setPersonalInfo((prevInfo) => {
+    setDisplay((prevDisplay) => {
       return {
-        ...prevInfo,
-        [name]: value,
+        ...prevDisplay,
+        displayExp: !prevDisplay.displayExp,
       };
     });
   };
+
+  // const handleEdit = (e) => {
+  //   const { name, value } = e.target;
+  //   setPersonalInfo((prevInfo) => {
+  //     return {
+  //       ...prevInfo,
+  //       [name]: value,
+  //     };
+  //   });
+  // };
   console.log(expInfo);
   return (
     <>
@@ -106,8 +133,10 @@ function App() {
         handleChange={handleExpInfoChange}
         handleSubmit={handleExpInfoSubmit}
       />
+      {display.displayPersonal && <DisplayPersonalInfo />}
+      {display.displayEdu && <DisplayEduInfo />}
+      {display.displayExp && <DisplayExpInfo />}
     </>
   );
 }
-
 export default App;
