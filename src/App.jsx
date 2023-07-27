@@ -24,20 +24,6 @@ function App() {
     startDate: new Date(),
     endDate: new Date(),
   });
-  const handleEdit = (e) => {
-    const { name, value } = e.target;
-    setPersonalInfo((prevInfo) => {
-      return {
-        ...prevInfo,
-        [name]: value,
-      };
-    });
-  };
-
-  const handleEduInfoSubmit = (e) => {
-    e.preventDefault();
-    console.log(e.target[2].valueAsDate);
-  };
 
   const handlePersonInfoChange = (e) => {
     const { name, value } = e.target;
@@ -81,19 +67,45 @@ function App() {
     });
   };
 
+  const handlePersonalInfoSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  const handleEduInfoSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  const handleExpInfoSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  const handleEdit = (e) => {
+    const { name, value } = e.target;
+    setPersonalInfo((prevInfo) => {
+      return {
+        ...prevInfo,
+        [name]: value,
+      };
+    });
+  };
   console.log(expInfo);
   return (
     <>
       <GeneralForm
         personalInfo={personalInfo}
         handleChange={handlePersonInfoChange}
+        handleSubmit={handlePersonalInfoSubmit}
       />
       <EducationForm
         eduInfo={eduInfo}
         handleChange={handleEduInfoChange}
         handleSubmit={handleEduInfoSubmit}
       />
-      <ExpForm expInfo={expInfo} handleChange={handleExpInfoChange} />
+      <ExpForm
+        expInfo={expInfo}
+        handleChange={handleExpInfoChange}
+        handleSubmit={handleExpInfoSubmit}
+      />
     </>
   );
 }

@@ -46,6 +46,7 @@ const EducationForm = (props) => {
             onChange={props.handleChange}
           />
         </label>
+        <br />
         <button>Submit</button>
       </form>
     </>

@@ -46,6 +46,7 @@ const ExpForm = (props) => {
             onChange={props.handleChange}
           />
         </label>
+        <br />
         <button>Submit</button>
       </form>
     </>

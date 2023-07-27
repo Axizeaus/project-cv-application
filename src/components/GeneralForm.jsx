@@ -2,7 +2,7 @@ const GeneralForm = (props) => {
   return (
     <>
       <h2>General</h2>
-      <form>
+      <form onSubmit={props.handleSubmit}>
         <label htmlFor="name">
           name:
           <input
@@ -36,6 +36,7 @@ const GeneralForm = (props) => {
           />
         </label>
         <br />
+        <button>Submit</button>
       </form>
     </>
   );
