@@ -1,4 +1,4 @@
-const GeneralForm = (props) => {
+const PersonalForm = (props) => {
   return (
     <>
       <h2>General</h2>
@@ -42,4 +42,4 @@ const GeneralForm = (props) => {
   );
 };
 
-export default GeneralForm;
+export default PersonalForm;

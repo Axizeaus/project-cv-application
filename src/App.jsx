@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import GeneralForm from "./components/GeneralForm";
+import PersonalForm from "./components/PersonalForm";
 import EducationForm from "./components/EducationForm";
 import ExpForm from "./components/ExpForm";
 
@@ -91,7 +91,7 @@ function App() {
   console.log(expInfo);
   return (
     <>
-      <GeneralForm
+      <PersonalForm
         personalInfo={personalInfo}
         handleChange={handlePersonInfoChange}
         handleSubmit={handlePersonalInfoSubmit}
