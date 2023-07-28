@@ -8,7 +8,7 @@ const EducationForm = (props) => {
           <input
             type="text"
             id="schoolName"
-            value={props.schoolName}
+            value={props.eduInfo.schoolName}
             name="schoolName"
             onChange={props.handleChange}
           />
@@ -19,7 +19,7 @@ const EducationForm = (props) => {
           <input
             type="text"
             id="studyTitle"
-            value={props.studyTitle}
+            value={props.eduInfo.studyTitle}
             name="studyTitle"
             onChange={props.handleChange}
           />
@@ -31,7 +31,7 @@ const EducationForm = (props) => {
             type="date"
             id="startDate"
             name="startDate"
-            value={props.startDate}
+            // value={props.eduInfo.startDate}
             onChange={props.handleChange}
           />
         </label>
@@ -42,7 +42,7 @@ const EducationForm = (props) => {
             type="date"
             id="endDate"
             name="endDate"
-            value={props.endDate}
+            value={props.eduInfo.endDate}
             onChange={props.handleChange}
           />
         </label>

@@ -7,7 +7,7 @@ const PersonalForm = (props) => {
           name:
           <input
             type="text"
-            value={props.name}
+            value={props.personalInfo.name}
             onChange={props.handleChange}
             name="name"
             id="name"
@@ -18,7 +18,7 @@ const PersonalForm = (props) => {
           email:
           <input
             type="email"
-            value={props.email}
+            value={props.personalInfo.email}
             onChange={props.handleChange}
             name="email"
             id="email"
@@ -29,7 +29,7 @@ const PersonalForm = (props) => {
           phone:
           <input
             type="text"
-            value={props.phone}
+            value={props.personalInfo.phone}
             onChange={props.handleChange}
             name="phone"
             id="phone"

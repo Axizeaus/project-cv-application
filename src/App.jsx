@@ -14,12 +14,6 @@ function App() {
     phone: "",
   });
 
-  const [display, setDisplay] = useState({
-    displayPersonal: false,
-    displayEdu: false,
-    displayExp: false,
-  });
-
   const [eduInfo, setEduInfo] = useState({
     schoolName: "",
     studyTitle: "",
@@ -34,6 +28,12 @@ function App() {
     endDate: new Date(),
   });
 
+  const [display, setDisplay] = useState({
+    displayPersonal: false,
+    displayEdu: false,
+    displayExp: false,
+  });
+
   const handlePersonInfoChange = (e) => {
     const { name, value } = e.target;
     setPersonalInfo((prevInfo) => {
@@ -43,6 +43,8 @@ function App() {
       };
     });
   };
+
+  console.log(eduInfo);
 
   const handleEduInfoChange = (e) => {
     const { name, value, type, valueAsDate } = e.target;
@@ -97,7 +99,6 @@ function App() {
   };
 
   const handleExpInfoSubmit = (e) => {
-    e.preventDefault();
     setDisplay((prevDisplay) => {
       return {
         ...prevDisplay,
@@ -106,36 +107,63 @@ function App() {
     });
   };
 
-  // const handleEdit = (e) => {
-  //   const { name, value } = e.target;
-  //   setPersonalInfo((prevInfo) => {
-  //     return {
-  //       ...prevInfo,
-  //       [name]: value,
-  //     };
-  //   });
-  // };
-  console.log(expInfo);
+  console.log(display);
+
+  const handleEdit = (name) => {
+    console.log(name);
+    setDisplay((prev) => {
+      return {
+        ...prev,
+        [name]: !prev[name],
+      };
+    });
+  };
+
+  const handleEduEdit = () => {
+    console.log("this runs");
+    setDisplay((prev) => {
+      return {
+        ...prev,
+        displayEdu: !prev.displayEdu,
+      };
+    });
+  };
+
   return (
     <>
-      <PersonalForm
-        personalInfo={personalInfo}
-        handleChange={handlePersonInfoChange}
-        handleSubmit={handlePersonalInfoSubmit}
-      />
-      <EducationForm
-        eduInfo={eduInfo}
-        handleChange={handleEduInfoChange}
-        handleSubmit={handleEduInfoSubmit}
-      />
+      {/* {display.displayPersonal ? (
+        <DisplayPersonalInfo
+          personalInfo={personalInfo}
+          handleEdit={() => handleEdit("displayPersonal")}
+        />
+      ) : (
+        <PersonalForm
+          personalInfo={personalInfo}
+          handleChange={handlePersonInfoChange}
+          handleSubmit={handlePersonalInfoSubmit}
+        />
+      )} */}
+
+      {display.displayEdu ? (
+        <DisplayEduInfo
+          eduInfo={eduInfo}
+          handleEdit={() => handleEdit("displayEdu")}
+        />
+      ) : (
+        <EducationForm
+          eduInfo={eduInfo}
+          handleChange={handleEduInfoChange}
+          handleSubmit={handleEduInfoSubmit}
+        />
+      )}
+      {/* 
       <ExpForm
         expInfo={expInfo}
         handleChange={handleExpInfoChange}
         handleSubmit={handleExpInfoSubmit}
       />
-      {display.displayPersonal && <DisplayPersonalInfo />}
-      {display.displayEdu && <DisplayEduInfo />}
-      {display.displayExp && <DisplayExpInfo />}
+      {display.displayEdu &&  />}
+      {display.displayExp && <DisplayExpInfo expInfo={expInfo} />} */}
     </>
   );
 }
