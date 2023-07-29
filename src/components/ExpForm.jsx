@@ -31,7 +31,7 @@ const ExpForm = (props) => {
             type="date"
             id="startDate"
             name="startDate"
-            value={props.startDate}
+            valueAsDate={props.startDate}
             onChange={props.handleChange}
           />
         </label>
@@ -42,7 +42,7 @@ const ExpForm = (props) => {
             type="date"
             id="endDate"
             name="endDate"
-            value={props.endDate}
+            valueAsDate={props.endDate}
             onChange={props.handleChange}
           />
         </label>

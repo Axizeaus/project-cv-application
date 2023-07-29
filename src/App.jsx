@@ -44,8 +44,6 @@ function App() {
     });
   };
 
-  console.log(eduInfo);
-
   const handleEduInfoChange = (e) => {
     const { name, value, type, valueAsDate } = e.target;
     setEduInfo((prevInfo) => {
@@ -99,6 +97,7 @@ function App() {
   };
 
   const handleExpInfoSubmit = (e) => {
+    e.preventDefault();
     setDisplay((prevDisplay) => {
       return {
         ...prevDisplay,
@@ -110,7 +109,6 @@ function App() {
   console.log(display);
 
   const handleEdit = (name) => {
-    console.log(name);
     setDisplay((prev) => {
       return {
         ...prev,
@@ -119,19 +117,9 @@ function App() {
     });
   };
 
-  const handleEduEdit = () => {
-    console.log("this runs");
-    setDisplay((prev) => {
-      return {
-        ...prev,
-        displayEdu: !prev.displayEdu,
-      };
-    });
-  };
-
   return (
     <>
-      {/* {display.displayPersonal ? (
+      {display.displayPersonal ? (
         <DisplayPersonalInfo
           personalInfo={personalInfo}
           handleEdit={() => handleEdit("displayPersonal")}
@@ -142,7 +130,7 @@ function App() {
           handleChange={handlePersonInfoChange}
           handleSubmit={handlePersonalInfoSubmit}
         />
-      )} */}
+      )}
 
       {display.displayEdu ? (
         <DisplayEduInfo
@@ -156,14 +144,19 @@ function App() {
           handleSubmit={handleEduInfoSubmit}
         />
       )}
-      {/* 
-      <ExpForm
-        expInfo={expInfo}
-        handleChange={handleExpInfoChange}
-        handleSubmit={handleExpInfoSubmit}
-      />
-      {display.displayEdu &&  />}
-      {display.displayExp && <DisplayExpInfo expInfo={expInfo} />} */}
+
+      {display.displayExp ? (
+        <DisplayExpInfo
+          expInfo={expInfo}
+          handleEdit={() => handleEdit("displayExp")}
+        />
+      ) : (
+        <ExpForm
+          expInfo={expInfo}
+          handleChange={handleExpInfoChange}
+          handleSubmit={handleExpInfoSubmit}
+        />
+      )}
     </>
   );
 }

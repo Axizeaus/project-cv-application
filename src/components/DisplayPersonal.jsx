@@ -4,9 +4,9 @@ const DisplayPersonalInfo = (props) => {
     <>
       <h1>This is personal data</h1>
       <ul>
-        <li>{name}</li>
-        <li>{email}</li>
-        <li>{phone}</li>
+        <li>Name : {name}</li>
+        <li>Email : {email}</li>
+        <li>Phone Number : {phone}</li>
       </ul>
       <button onClick={props.handleEdit}>Edit</button>
     </>

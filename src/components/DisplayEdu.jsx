@@ -5,9 +5,10 @@ const DisplayEduInfo = (props) => {
     <>
       <h1>This is Edu info display</h1>
       <ul>
-        <li>{schoolName}</li>
-        <li>{studyTitle}</li>
-        <li>{startDate.toString()}</li>
+        <li>School Name : {schoolName}</li>
+        <li>Study Title : {studyTitle}</li>
+        <li>Start Date : {startDate.toString()}</li>
+        <li>End Date : {endDate.toString()}</li>
       </ul>
       <button onClick={props.handleEdit}>Edit</button>
     </>

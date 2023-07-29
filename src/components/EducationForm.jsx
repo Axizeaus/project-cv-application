@@ -31,7 +31,7 @@ const EducationForm = (props) => {
             type="date"
             id="startDate"
             name="startDate"
-            // value={props.eduInfo.startDate}
+            valueAsDate={props.eduInfo.startDate}
             onChange={props.handleChange}
           />
         </label>
@@ -42,7 +42,7 @@ const EducationForm = (props) => {
             type="date"
             id="endDate"
             name="endDate"
-            value={props.eduInfo.endDate}
+            valueAsDate={props.eduInfo.endDate}
             onChange={props.handleChange}
           />
         </label>
