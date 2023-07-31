@@ -1,53 +1,57 @@
+import React from "react";
+
 const ExpForm = (props) => {
   return (
     <>
-      <h2>Experience</h2>
-      <form onSubmit={props.handleSubmit}>
-        <label htmlFor="companyName">
-          company name :
+      <h2 className="form-title">Experience</h2>
+      <form onSubmit={props.handleSubmit} className="form">
+        <label htmlFor="companyName" className="form-label">
+          Company Name:
           <input
             type="text"
             id="companyName"
             value={props.companyName}
             name="companyName"
             onChange={props.handleChange}
+            className="form-input"
+            placeholder="Company Name"
           />
         </label>
-        <br />
-        <label htmlFor="positionTitle">
-          position title :
+        <label htmlFor="positionTitle" className="form-label">
+          Position Title:
           <input
             type="text"
             id="positionTitle"
             value={props.positionTitle}
             name="positionTitle"
             onChange={props.handleChange}
+            className="form-input"
+            placeholder="Position Title"
           />
         </label>
-        <br />
-        <label htmlFor="startDate">
-          start date :{" "}
+        <label htmlFor="startDate" className="form-label">
+          Start Date:
           <input
             type="date"
             id="startDate"
             name="startDate"
-            valueAsDate={props.startDate}
+            value={props.startDate}
             onChange={props.handleChange}
+            className="form-input form-date-input"
           />
         </label>
-        <br />
-        <label htmlFor="endDate">
-          end date :{" "}
+        <label htmlFor="endDate" className="form-label">
+          End Date:
           <input
             type="date"
             id="endDate"
             name="endDate"
-            valueAsDate={props.endDate}
+            value={props.endDate}
             onChange={props.handleChange}
+            className="form-input form-date-input"
           />
         </label>
-        <br />
-        <button>Submit</button>
+        <button className="form-btn">Submit</button>
       </form>
     </>
   );

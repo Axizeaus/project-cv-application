@@ -1,53 +1,53 @@
+import React from "react";
+
 const EducationForm = (props) => {
   return (
     <>
-      <h2>Education</h2>
-      <form onSubmit={props.handleSubmit}>
-        <label htmlFor="schoolName">
-          school name :
+      <h2 className="form-title">Education</h2>
+      <form onSubmit={props.handleSubmit} className="form">
+        <label htmlFor="schoolName" className="form-label">
+          School Name:
           <input
             type="text"
-            id="schoolName"
+            placeholder="School Name"
             value={props.eduInfo.schoolName}
             name="schoolName"
             onChange={props.handleChange}
+            className="form-input"
           />
         </label>
-        <br />
-        <label htmlFor="studyTitle">
-          study title :
+        <label htmlFor="studyTitle" className="form-label">
+          Study Title:
           <input
             type="text"
-            id="studyTitle"
+            placeholder="Study Title"
             value={props.eduInfo.studyTitle}
             name="studyTitle"
             onChange={props.handleChange}
+            className="form-input"
           />
         </label>
-        <br />
-        <label htmlFor="startDate">
-          start date :{" "}
+        <label htmlFor="startDate" className="form-label">
+          Start Date:
           <input
             type="date"
-            id="startDate"
+            value={props.eduInfo.startDate.toISOString().slice(0, 10)}
             name="startDate"
-            valueAsDate={props.eduInfo.startDate}
             onChange={props.handleChange}
+            className="form-input form-date-input"
           />
         </label>
-        <br />
-        <label htmlFor="endDate">
-          end date :{" "}
+        <label htmlFor="endDate" className="form-label">
+          End Date:
           <input
             type="date"
-            id="endDate"
+            value={props.eduInfo.endDate.toISOString().slice(0, 10)}
             name="endDate"
-            valueAsDate={props.eduInfo.endDate}
             onChange={props.handleChange}
+            className="form-input form-date-input"
           />
         </label>
-        <br />
-        <button>Submit</button>
+        <button className="form-btn">Submit</button>
       </form>
     </>
   );

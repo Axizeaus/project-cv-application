@@ -1,13 +1,13 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import PersonalForm from "./components/PersonalForm";
 import EducationForm from "./components/EducationForm";
 import ExpForm from "./components/ExpForm";
-import DisplayPersonalInfo from "./components/DisplayPersonal";
-import DisplayEduInfo from "./components/DisplayEdu";
-import DisplayExpInfo from "./components/DisplayExp";
+import DisplayPersonalInfo from "./components/DisplayPersonalInfo";
+import DisplayEduInfo from "./components/DisplayEduInfo";
+import DisplayExpInfo from "./components/DisplayExpInfo";
 
-function App() {
+const App = () => {
   const [personalInfo, setPersonalInfo] = useState({
     name: "",
     email: "",
@@ -34,91 +34,33 @@ function App() {
     displayExp: false,
   });
 
-  const handlePersonInfoChange = (e) => {
-    const { name, value } = e.target;
-    setPersonalInfo((prevInfo) => {
-      return {
-        ...prevInfo,
-        [name]: value,
-      };
-    });
-  };
-
-  const handleEduInfoChange = (e) => {
+  const handleInfoChange = (stateSetter) => (e) => {
     const { name, value, type, valueAsDate } = e.target;
-    setEduInfo((prevInfo) => {
-      if (type === "date") {
-        return {
-          ...prevInfo,
-          [name]: valueAsDate,
-        };
-      }
-      return {
-        ...prevInfo,
-        [name]: value,
-      };
-    });
+    const fieldValue = type === "date" ? valueAsDate : value;
+
+    stateSetter((prevState) => ({
+      ...prevState,
+      [name]: fieldValue,
+    }));
   };
 
-  const handleExpInfoChange = (e) => {
-    const { name, value, type, valueAsDate } = e.target;
-    setExpInfo((prevInfo) => {
-      if (type === "date") {
-        return {
-          ...prevInfo,
-          [name]: valueAsDate,
-        };
-      }
-      return {
-        ...prevInfo,
-        [name]: value,
-      };
-    });
-  };
-
-  const handlePersonalInfoSubmit = (e) => {
+  const handleSubmit = (e, stateSetter) => {
     e.preventDefault();
-    setDisplay((prevDisplay) => {
-      return {
-        ...prevDisplay,
-        displayPersonal: !prevDisplay.displayPersonal,
-      };
-    });
+    setDisplay((prevDisplay) => ({
+      ...prevDisplay,
+      [stateSetter.name]: !prevDisplay[stateSetter.name],
+    }));
   };
-
-  const handleEduInfoSubmit = (e) => {
-    e.preventDefault();
-    setDisplay((prevDisplay) => {
-      return {
-        ...prevDisplay,
-        displayEdu: !prevDisplay.displayEdu,
-      };
-    });
-  };
-
-  const handleExpInfoSubmit = (e) => {
-    e.preventDefault();
-    setDisplay((prevDisplay) => {
-      return {
-        ...prevDisplay,
-        displayExp: !prevDisplay.displayExp,
-      };
-    });
-  };
-
-  console.log(display);
 
   const handleEdit = (name) => {
-    setDisplay((prev) => {
-      return {
-        ...prev,
-        [name]: !prev[name],
-      };
-    });
+    setDisplay((prev) => ({
+      ...prev,
+      [name]: !prev[name],
+    }));
   };
 
   return (
-    <>
+    <div className="container">
       {display.displayPersonal ? (
         <DisplayPersonalInfo
           personalInfo={personalInfo}
@@ -127,8 +69,8 @@ function App() {
       ) : (
         <PersonalForm
           personalInfo={personalInfo}
-          handleChange={handlePersonInfoChange}
-          handleSubmit={handlePersonalInfoSubmit}
+          handleChange={handleInfoChange(setPersonalInfo)}
+          handleSubmit={(e) => handleSubmit(e, { name: "displayPersonal" })}
         />
       )}
 
@@ -140,8 +82,8 @@ function App() {
       ) : (
         <EducationForm
           eduInfo={eduInfo}
-          handleChange={handleEduInfoChange}
-          handleSubmit={handleEduInfoSubmit}
+          handleChange={handleInfoChange(setEduInfo)}
+          handleSubmit={(e) => handleSubmit(e, { name: "displayEdu" })}
         />
       )}
 
@@ -153,11 +95,12 @@ function App() {
       ) : (
         <ExpForm
           expInfo={expInfo}
-          handleChange={handleExpInfoChange}
-          handleSubmit={handleExpInfoSubmit}
+          handleChange={handleInfoChange(setExpInfo)}
+          handleSubmit={(e) => handleSubmit(e, { name: "displayExp" })}
         />
       )}
-    </>
+    </div>
   );
-}
+};
+
 export default App;
